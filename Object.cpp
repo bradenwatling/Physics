@@ -58,6 +58,14 @@ double Object::getRoG() const {
     return RoG;
 }
 
+bool Object::isFixedTrans() const {
+    return fixed_trans;
+}
+
+void Object::setFixedTrans(bool _fixed_trans) {
+    fixed_trans = _fixed_trans;
+}
+
 void Object::update(double curTime) {
     // If the time is greater than 1 pixel * 1 / (vel [pixels/sec])
     if (!fixed_trans && vel.getMag() != 0.0 && curTime - lastTranslateTime > 1.0 / vel.getMag()) {

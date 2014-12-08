@@ -1,5 +1,5 @@
 flags = -g -pthread -std=c++11
-objects = main.o Physics.o Point.o Object.o Rectangle.o easygl.o graphics.o
+objects = main.o Physics.o Point.o Object.o Rectangle.o Polygon.o easygl.o graphics.o
 
 all: $(objects)
 	g++ $(flags) $(objects) -lX11 -o physics
@@ -18,6 +18,9 @@ Object.o: Object.cpp
 
 Rectangle.o: Rectangle.cpp
 	g++ $(flags) -c Rectangle.cpp
+
+Polygon.o: Polygon.cpp
+	g++ $(flags) -c Polygon.cpp
 
 graphics.o: graphics.cpp
 	g++ $(flags) -DX11 -c graphics.cpp

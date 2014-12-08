@@ -15,6 +15,23 @@ Point::Point(float _x, float _y) {
     calcMag();
 }
 
+void Point::setX(float _x) {
+    x = _x;
+    calcMag();
+}
+
+void Point::setY(float _y) {
+    y = _y;
+    calcMag();
+}
+
+void Point::setXY(float _x, float _y) {
+    x = _x;
+    y = _y;
+    
+    calcMag();
+}
+
 float Point::getX() const {
     return x;
 }

@@ -1,3 +1,4 @@
+#include "Polygon.h"
 #include "Rectangle.h"
 
 Rectangle::Rectangle(const Point &_pos, int _width, int _height, double mass, bool fixed)
@@ -51,5 +52,13 @@ bool Rectangle::testCollision(const Rectangle &rect) const {
 
 bool Rectangle::testCollision(const Circle &circ) const {
     return false;
+}
+
+bool Rectangle::testCollision(const Polygon &poly) const {
+    Point pos = getPos();
+    double angle = getAngle();
+    
+    return poly.contains(pos + rotate(vertices[0], angle)) || poly.contains(pos + rotate(vertices[1], angle))
+            || poly.contains(pos + rotate(vertices[2], angle)) || poly.contains(pos + rotate(vertices[3], angle));
 }
 

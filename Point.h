@@ -12,6 +12,10 @@ class Point {
         Point();
         Point(float _x, float _y);
         
+        void setX(float _x);
+        void setY(float _y);
+        void setXY(float _x, float _y);
+        
         float getX() const;
         float getY() const;
         float getMag() const;

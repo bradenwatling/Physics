@@ -4,8 +4,11 @@
 #include "easygl.h"
 #include "Point.h"
 
+extern easygl window;
+
 class Rectangle;
 class Circle;
+class Polygon;
 
 class Object {
     private:
@@ -37,6 +40,9 @@ class Object {
         double getMass() const;
         double getRoG() const;
         
+        bool isFixedTrans() const;
+        void setFixedTrans(bool _fixed_trans);
+        
         void update(double curTime);
         void applyForce(const Point &loc, const Point &f);
         void applyForce(const Point &f, float moment);
@@ -47,6 +53,7 @@ class Object {
         virtual bool collision(const Object &obj) const = 0;
         virtual bool testCollision(const Rectangle &rect) const = 0;
         virtual bool testCollision(const Circle &circ) const = 0;
+        virtual bool testCollision(const Polygon &poly) const = 0;
 };
 
 #endif /* OBJECT_H */

@@ -1,16 +1,20 @@
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#ifndef POLYGON_H
+#define POLYGON_H
 
 #include <cmath>
 #include "Object.h"
 
-class Rectangle : public Object {
+class Polygon : public Object {
     private:
         int width, height;
-        Point vertices[4];
+        int numVertices;
+        Point **vertices;
 
     public:
-        Rectangle(const Point &_pos, int _width, int _height, double mass, bool fixed);
+        Polygon(const Point &_pos, const Point _vertices[], int _numVertices, double mass, bool fixed);
+        ~Polygon();
+        
+        double area() const;
         
         void draw() const;
         bool contains(const Point &loc) const;
@@ -21,4 +25,4 @@ class Rectangle : public Object {
         bool testCollision(const Polygon &poly) const;
 };
 
-#endif /* RECTANGLE_H */
+#endif /* POLYGON_H */

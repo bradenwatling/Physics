@@ -6,6 +6,7 @@ using namespace std;
 #include "Physics.h"
 #include "Object.h"
 #include "Rectangle.h"
+#include "Polygon.h"
 
 easygl window("Resistor display", WHITE);
 
@@ -14,8 +15,16 @@ Physics::Physics() {
     objects.push_back(new Rectangle(Point(12, 0), 6, 8, 50, false));
     objects.push_back(new Rectangle(Point(-8, -4), 4, 8, 5, false));
     
-    objects[1]->applyForce(Point(-5, 5), Point(-40000, 180000) / 2.2);
-    objects[2]->applyForce(Point(30, 5), Point(500, 8000));
+    Point points[5];
+    for (int i = 0; i < 5; i++) {
+        points[i].setXY(5 * cos(i * 2 * PI / 5), 5 * sin(i * 2 * PI / 5));
+    }
+    
+    objects.push_back(new Polygon(Point(0, -10), points, 5, 60, false));
+    
+    objects[1]->applyForce(Point(-5, 5), Point(-40000, 180000) / 2.2 * 4);
+    objects[2]->applyForce(Point(30, 5), Point(200, 8000) * 2);
+    objects[3]->applyForce(Point(6, 0), Point(0, 100000));
     
     window.set_world_coordinates(-100, -100, 100, 100);
 }
@@ -53,6 +62,14 @@ void Physics::run() {
                 
                 double iMoment = iMass * totalAngVel / totalMass;
                 double jMoment = jMass * totalAngVel / totalMass;
+                
+                if ((*i)->isFixedTrans()) {
+                    (*j)->setFixedTrans(true);
+                }
+                
+                if ((*j)->isFixedTrans()) {
+                    (*i)->setFixedTrans(true);
+                }
                 
                 // Subtract 1 to cancel the velocity that each Object had previously
                 // Add the velocities, multiplied by the proportion of total mass going in the corresponding direction
