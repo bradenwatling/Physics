@@ -1,11 +1,11 @@
 #include "Rectangle.h"
 
 Rectangle::Rectangle(const Point &_pos, int _width, int _height)
-                        : Object(_pos, 1) {
-    RoG = 100000;
+                        : Object(_pos, 100) {
+    RoG = 1000;
     width = _width;
     height = _height;
-    fixed_trans = true;
+    //fixed_trans = true;
 }
 
 void Rectangle::draw() {

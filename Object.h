@@ -16,18 +16,19 @@ class Object {
         double ang_acc; // Angular acceleration. Counter-clockwise positive
         double RoG; // Radius of gyration
         
-        Point getPos() const;
-        double getAngle() const;
-        
         bool fixed_trans, fixed_rotate;
         
     public:
         Object(const Point &_pos, double _mass);
         virtual ~Object();
         
+        Point getPos() const;
+        double getAngle() const;
+        double getMass() const;
+        
         void update();
         void applyForce(const Point &loc, const Point &f);
-        
+
         virtual void draw() = 0;
         virtual bool contains(const Point &loc) = 0;
         virtual bool collision(const Object &obj) = 0;

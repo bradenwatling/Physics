@@ -11,9 +11,9 @@ easygl window("Resistor display", WHITE);
 
 Physics::Physics() {    
     objects.push_back(new Rectangle(Point(0, 0), 10, 10));
-    (*objects.begin())->applyForce(Point(2, 3), Point(-5, 0));
+    objects[0]->applyForce(objects[0]->getPos() + Point(5, 5), Point(1, 5));
     
-    window.set_world_coordinates(-10, -10, 10, 10);
+    window.set_world_coordinates(-100, -100, 100, 100);
 }
 
 Physics::~Physics() {
@@ -26,7 +26,8 @@ void Physics::run() {
     double now = (double) clock() * SEC_PER_CLOCK;
     
     if (now - lastUpdate > 0.05) {
-        (*objects.begin())->applyForce(Point(2, 3), Point(1, 0));
+        //(*objects.begin())->applyForce(Point(2, 3), Point(1, 0));
+        objects[0]->applyForce(objects[0]->getPos(), Point(0, -0.1) * objects[0]->getMass());
         
         for (vector<Object *>::iterator iter = objects.begin(); iter != objects.end(); iter++) {
             (*iter)->update();

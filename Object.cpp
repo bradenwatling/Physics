@@ -2,14 +2,6 @@
 #include "Physics.h"
 #include "Object.h"
 
-Point Object::getPos() const {
-    return pos;
-}
-
-double Object::getAngle() const {
-    return angle;
-}
-
 Object::Object(const Point &_pos, double _mass)
                 : pos(_pos) {
     mass = _mass;
@@ -25,6 +17,18 @@ Object::Object(const Point &_pos, double _mass)
 }
 
 Object::~Object() {
+}
+
+Point Object::getPos() const {
+    return pos;
+}
+
+double Object::getAngle() const {
+    return angle;
+}
+
+double Object::getMass() const {
+    return mass;
 }
 
 void Object::update() {
