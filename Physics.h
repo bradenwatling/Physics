@@ -3,14 +3,17 @@
 
 #include <thread>
 #include <vector>
+#include <time.h>
 using namespace std;
+
+#define PI 3.14159265359
+#define SEC_PER_CLOCK 1 / CLOCKS_PER_SEC
 
 class Object;
 
 class Physics {
     private:
-        int x, y;
-        thread t;
+        double lastDraw, lastUpdate;
         vector<Object *> objects;
 
     public:

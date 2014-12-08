@@ -9,7 +9,7 @@ class Object {
         Point vel; // Velocity
         double angle; // Angle
         double ang_vel; // Angular velocity
-        float mass; // Mass
+        double mass; // Mass
         
     protected:
         Point acc; // Acceleration
@@ -22,7 +22,7 @@ class Object {
         bool fixed_trans, fixed_rotate;
         
     public:
-        Object(const Point &_pos, float _mass);
+        Object(const Point &_pos, double _mass);
         virtual ~Object();
         
         void update();
