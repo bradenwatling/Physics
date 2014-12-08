@@ -7,7 +7,9 @@
 using namespace std;
 
 #define PI 3.14159265359
-#define SEC_PER_CLOCK 1 / CLOCKS_PER_SEC
+#define SECS_PER_CLOCK 1 / CLOCKS_PER_SEC
+#define FPS 30.0
+#define SPF 1 / FPS
 
 class Object;
 

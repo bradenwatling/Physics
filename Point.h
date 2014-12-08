@@ -1,15 +1,20 @@
 #ifndef POINT_H
 #define POINT_H
 
+#include <cmath>
+
 class Point {
     private:
-        float x, y;
+        float x, y, mag;
+        void calcMag();
+        
     public:
         Point();
         Point(float _x, float _y);
         
         float getX() const;
         float getY() const;
+        float getMag() const;
         
         Point &operator+=(const Point &rhs); // Vector addition
         Point &operator-=(const Point &rhs); // Vector subtraction
