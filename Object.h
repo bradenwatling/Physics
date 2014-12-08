@@ -23,7 +23,7 @@ class Object {
         
         bool fixed_trans, fixed_rotate;
         
-        Point rotate(const Point &p) const;
+        static Point rotate(const Point &p, double angle);
         static void addToVertices(t_point *vertices, int index, const Point &p);
         
     public:
@@ -31,11 +31,15 @@ class Object {
         virtual ~Object();
         
         Point getPos() const;
+        Point getVel() const;
         double getAngle() const;
+        double getAngVel() const;
         double getMass() const;
+        double getRoG() const;
         
         void update(double curTime);
         void applyForce(const Point &loc, const Point &f);
+        void applyForce(const Point &f, float moment);
 
         virtual void draw() const = 0;
         virtual bool contains(const Point &loc) const = 0;

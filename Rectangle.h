@@ -12,7 +12,7 @@ class Rectangle : public Object {
         Point vertices[4];
 
     public:
-        Rectangle(const Point &_pos, int _width, int _height);
+        Rectangle(const Point &_pos, int _width, int _height, double mass, bool fixed);
         
         void draw() const;
         bool contains(const Point &loc) const;
