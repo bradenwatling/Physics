@@ -95,12 +95,16 @@ void Object::applyForce(const Point &loc, const Point &f) {
         // F = ma
         vel += f / mass;
     }
+    else if (vel.getMag() != 0.0) {
+        vel = Point(0, 0);
+    }
     
     if (!fixed_rotate) {
         // M = I * (alpha) where I = radius of gyration
         float moment = loc ^ f; // Moment is distance vector x(cross) force
         ang_vel += moment / RoG;
     }
+    else ang_vel = 0.0;
 }
 
 void Object::applyForce(const Point &f, float moment) {
@@ -108,10 +112,14 @@ void Object::applyForce(const Point &f, float moment) {
         // F = ma
         vel += f / mass;
     }
+    else if (vel.getMag() != 0.0) {
+        vel = Point(0, 0);
+    }
     
     if (!fixed_rotate) {
         // M = I * (alpha) where I = radius of gyration
         ang_vel += moment / RoG;
     }
+    else ang_vel = 0.0;
 }
 

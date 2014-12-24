@@ -1,16 +1,16 @@
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#ifndef CIRCLE_H
+#define CIRCLE_H
 
 #include <cmath>
 #include "Object.h"
 
-class Rectangle : public Object {
+class Circle : public Object {
     private:
-        double width, height;
-        Point vertices[4];
+        double radius;
+        static const Point testPoints[];
 
     public:
-        Rectangle(const Point &_pos, double _width, double _height, double mass, bool fixed);
+        Circle(const Point &_pos, double _radius, double mass, bool fixed);
         
         void draw() const;
         bool contains(const Point &loc) const;
@@ -21,4 +21,4 @@ class Rectangle : public Object {
         bool testCollision(const Polygon &poly) const;
 };
 
-#endif /* RECTANGLE_H */
+#endif /* CIRCLE_H */

@@ -6,7 +6,6 @@
 
 class Polygon : public Object {
     private:
-        int width, height;
         int numVertices;
         Point **vertices;
 

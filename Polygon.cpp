@@ -1,4 +1,5 @@
 #include "Rectangle.h"
+#include "Circle.h"
 #include "Polygon.h"
 
 Polygon::Polygon(const Point &_pos, const Point _vertices[], int _numVertices, double mass, bool fixed)
@@ -111,10 +112,28 @@ bool Polygon::testCollision(const Rectangle &rect) const {
 }
 
 bool Polygon::testCollision(const Circle &circ) const {
+    Point pos = getPos();
+    double angle = getAngle();
+    
+    for (int i = 0; i < numVertices; i++) {
+        if (circ.contains(pos + rotate(*vertices[i], angle))) {
+            return true;
+        }
+    }
+    
     return false;
 }
 
 bool Polygon::testCollision(const Polygon &poly) const {
+    Point pos = getPos();
+    double angle = getAngle();
+    
+    for (int i = 0; i < numVertices; i++) {
+        if (poly.contains(pos + rotate(*vertices[i], angle))) {
+            return true;
+        }
+    }
+    
     return false;
 }
 

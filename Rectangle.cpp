@@ -1,7 +1,8 @@
+#include "Circle.h"
 #include "Polygon.h"
 #include "Rectangle.h"
 
-Rectangle::Rectangle(const Point &_pos, int _width, int _height, double mass, bool fixed)
+Rectangle::Rectangle(const Point &_pos, double _width, double _height, double mass, bool fixed)
                         : Object(_pos, mass) {
     width = _width;
     height = _height;
@@ -11,7 +12,7 @@ Rectangle::Rectangle(const Point &_pos, int _width, int _height, double mass, bo
     vertices[2] = Point(width / 2, height / 2);
     vertices[3] = Point(width / 2, -height / 2);
     fixed_trans = fixed;
-    fixed_rotate = fixed;
+    //fixed_rotate = fixed;
 }
 
 void Rectangle::draw() const {
@@ -51,7 +52,11 @@ bool Rectangle::testCollision(const Rectangle &rect) const {
 }
 
 bool Rectangle::testCollision(const Circle &circ) const {
-    return false;
+    Point pos = getPos();
+    double angle = getAngle();
+    
+    return circ.contains(pos + rotate(vertices[0], angle)) || circ.contains(pos + rotate(vertices[1], angle))
+            || circ.contains(pos + rotate(vertices[2], angle)) || circ.contains(pos + rotate(vertices[3], angle));
 }
 
 bool Rectangle::testCollision(const Polygon &poly) const {

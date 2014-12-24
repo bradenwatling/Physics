@@ -4,6 +4,8 @@
 #include "easygl.h"
 #include "Point.h"
 
+#define PI 3.14159265359
+
 extern easygl window;
 
 class Rectangle;
